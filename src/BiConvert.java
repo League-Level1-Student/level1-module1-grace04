@@ -1,3 +1,6 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -5,15 +8,29 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class BiConvert {
+public class BiConvert implements ActionListener {
 	
-	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		JTextField answer = new JTextField(20);
 		JLabel label = new JLabel();
-		JButton convert = new JButton();
-		convert.addMouseListener(null);
+		JButton button = new JButton();
+		
+	public static void main(String[] args) {
+
+		BiConvert bc = new BiConvert();
+		bc.me();
+	}
+	
+	private void me() {
+		frame.add(panel);
+		frame.setVisible(true);
+		button.addActionListener(this);
+		button.setText("convert");
+		panel.add(button);
+		panel.add(answer);
+		panel.add(label);
+		frame.pack();
 	}
 	
     String convert(String input) {
@@ -35,4 +52,13 @@ public class BiConvert {
              return "-";
         }
    }
+
+    @Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		String it = answer.getText();
+		String its = convert(it);
+		label.setText(its);
+		frame.pack();
+	}
 }
